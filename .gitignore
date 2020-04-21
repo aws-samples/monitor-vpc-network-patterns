@@ -1,0 +1,9 @@
+tgw.code-workspace
+*.tfvars
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+alerts/*.zip
+alerts/ipaddr-2.2.0.dist-info/
+alerts/ipaddr.py
+notebooks/.ipynb_checkpoints/

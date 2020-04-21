@@ -1,0 +1,41 @@
+@startuml TGW_Infra
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/NetworkingAndContentDelivery/all.puml
+!include AWSPuml/Compute/all.puml
+!include AWSPuml/Database/all.puml
+!include AWSPuml/Mobile/all.puml
+!include AWSPuml/Storage/all.puml
+!include AWSPuml/Analytics/all.puml
+!include AWSPuml/ApplicationIntegration/all.puml
+!include AWSPuml/ManagementAndGovernance/all.puml
+
+title Infrastructure with Transit Gateway
+
+package "VPC A" {
+    EC2Instance(instanceA, "", "Compute resource", "")
+}
+note bottom of instanceA : 10.0.0.0/16
+
+package "VPC B" {
+    EC2Instance(instanceB, "", "Compute resource", "")
+}
+note bottom of instanceB : 10.1.0.0/16
+
+package "VPC C" {
+    EC2Instance(instanceC, "", "Compute resource", "")
+}
+note bottom of instanceC : 10.2.0.0/16
+
+TransitGateway(tgw, "", "Hub", "")
+tgw <-[#red]-> instanceA: TGW
+tgw <-[#red]-> instanceB: TGW
+tgw <-[#red]-> instanceC: TGW
+
+package "Data sets" {
+    CloudTrail(ctrail, "", "Audit logs", "")
+    CloudWatch(cwatch, "", "CloudWatch logs", "")
+    VPCFlowLogs(flowlogs, "", "VPC flow logs", "")
+}
+@enduml

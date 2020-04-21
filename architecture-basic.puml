@@ -1,0 +1,33 @@
+@startuml Basic_Infra
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/NetworkingAndContentDelivery/all.puml
+!include AWSPuml/Compute/all.puml
+!include AWSPuml/Database/all.puml
+!include AWSPuml/Mobile/all.puml
+!include AWSPuml/Storage/all.puml
+!include AWSPuml/Analytics/all.puml
+!include AWSPuml/ApplicationIntegration/all.puml
+!include AWSPuml/ManagementAndGovernance/all.puml
+
+title Infrastructure for network monitoring examples
+
+package "VPC A" {
+    EC2Instance(instanceA, "", "Compute resource", "")
+}
+
+package "VPC B" {
+    EC2Instance(instanceB, "", "Compute resource", "")
+}
+
+package "VPC C" {
+    EC2Instance(instanceC, "", "Compute resource", "")
+}
+
+package "Data sets" {
+    CloudTrail(ctrail, "", "Audit logs", "")
+    CloudWatch(cwatch, "", "CloudWatch logs", "")
+    VPCFlowLogs(flowlogs, "", "VPC flow logs", "")
+}
+@enduml
